@@ -10,6 +10,13 @@ function getOneCallWeather(userCity, callback) {
     // First make a request to getWeaterByCity... so we can get the coords in the response.
     // function(jsonResponse).. is the callback for getWeatherByCity, its just inline.
     getWeatherByCity(userCity, function(jsonResponse) {
+
+
+
+
+        if (jsonResponse.cod != "200") {
+            displayBannerAlert(jsonResponse.message);
+        }
         //get the lat/lon
         let lat = jsonResponse.coord.lat;
         let lon = jsonResponse.coord.lon;
@@ -31,12 +38,13 @@ function getFiveDayWeatherForeCast(userCity, callback) {
 
 
 function baseGet(url, callback) {
+
     fetch(url)
         .then(function(resp) { return resp.json() }) // Convert data to json
         .then(function(json) {
             callback(json)
         })
-        .catch(function() {
-            // catch any errors
+        .catch((err) => {
+            console.log(err.message);
         });
 }

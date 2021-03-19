@@ -41,6 +41,14 @@ function createCityDetails(parent) {
     });
 }
 
+
+function createFiveDayForecast(parent) {
+    parent.append($(`<div class="text-xl mt-4" id="5DayForecast">5 Day Forecast<div id="forecastCardContainer" class=" m-4 flex flex-row text-base"></div></div>`));
+    $("#5DayForecast").hide();
+};
+
+
+
 function updateWeatherIcon(iconId) {
     $("#currentWeatherIcon").attr("src", `http://openweathermap.org/img/wn/${iconId}@2x.png`);
     $("#currentWeatherIcon").show();
@@ -63,7 +71,7 @@ function determineUVIStyling(value) {
 }
 
 function updateTempValue(tempValue) {
-    tempValue = Math.round((tempValue - 273.15) * 9 / 5 + 32);
+    tempValue = kelvinToFarenheit(tempValue);
     $("#tempText").text(`${tempValue} °F`);
     $('#tempText').addClass(tempValue);
     $("#tempLabel").show();
@@ -71,6 +79,7 @@ function updateTempValue(tempValue) {
 
 function updateUVIElement(uviValue) {
     $("#uviText").text(`${uviValue}`);
+    $('#uviText').removeClass();
     $('#uviText').addClass(determineUVIStyling(uviValue));
     $("#uviLabel").show();
 }
@@ -89,3 +98,11 @@ function updateWindElement(windValue) {
 // function createTimeElement(parent) {
 //     parent.append($("<h1 class='text-3xl' id='currentDate'>Date:</h1>"));
 // }
+
+
+function displayBannerAlert(text) {
+    $("#bannerAlertText").text(text)
+    $("#bannerAlert").show();
+    setInterval(function() { $("#bannerAlert").hide() }, 3000);
+    setInterval()
+}
