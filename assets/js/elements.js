@@ -2,6 +2,8 @@ let cityNameHTML = "<h1 id='cityName'></h1>";
 let currentDateHTML = "<span class='mx-3' id='currentDate'></span>";
 let currentWeatherIcon = "<img class='h-11 w-11 -mt-1' id='currentWeatherIcon'></img>";
 
+
+// json objects
 let myElements = [{
         "label": "tempLabel",
         "textId": "tempText",
@@ -24,11 +26,13 @@ let myElements = [{
     }
 ]
 
+// object builder
 function getElementHtml(obj) {
     return `<div class='mt-3'><span class='mx-1' id='${obj.label}'>${obj.text} <span id='${obj.textId}'>
     </span></span></div>`;
 }
 
+// creates dynamic DOM elements
 function createCityDetails(parent) {
     parent.append($(`<div id="cityDetails" class="flex-col border border-gray-300 h-1/3 p-8"> 
     <div class='flex justify-start text-3xl'> ${cityNameHTML} ${currentDateHTML}${currentWeatherIcon}
@@ -54,6 +58,7 @@ function updateWeatherIcon(iconId) {
     $("#currentWeatherIcon").show();
 
 }
+
 
 function determineUVIStyling(value) {
     // green = 2 yellow =5 orange = 7 
@@ -95,11 +100,7 @@ function updateWindElement(windValue) {
 }
 
 
-// function createTimeElement(parent) {
-//     parent.append($("<h1 class='text-3xl' id='currentDate'>Date:</h1>"));
-// }
-
-
+// banner alert for when city cannot be found
 function displayBannerAlert(text) {
     $("#bannerAlertText").text(text)
     $("#bannerAlert").show();

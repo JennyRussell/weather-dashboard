@@ -7,13 +7,7 @@ function getWeatherByCity(userCity, callback) {
 }
 
 function getOneCallWeather(userCity, callback) {
-    // First make a request to getWeaterByCity... so we can get the coords in the response.
-    // function(jsonResponse).. is the callback for getWeatherByCity, its just inline.
     getWeatherByCity(userCity, function(jsonResponse) {
-
-
-
-
         if (jsonResponse.cod != "200") {
             displayBannerAlert(jsonResponse.message);
         }
@@ -30,13 +24,14 @@ function getOneCallWeather(userCity, callback) {
     });
 }
 
+// builds URL to get 5 day weather forecast
 function getFiveDayWeatherForeCast(userCity, callback) {
     let url = `${baseURL}forecast/daily?q=${userCity}&cnt=5&appid=${API_KEY}`;
     return baseGet(url, callback);
 
 }
 
-
+// base fetch
 function baseGet(url, callback) {
 
     fetch(url)

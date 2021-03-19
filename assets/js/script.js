@@ -3,6 +3,7 @@ const SEARCH_BTN = $("search-button");
 let cityName = $("#user-input").value
 let cities = [];
 
+// API call responses for various city details values
 function updateCityDetailsCallback(jsonResponse) {
     updateUVIElement(jsonResponse.current.uvi);
     updateTempValue(jsonResponse.current.temp);
@@ -14,12 +15,10 @@ function updateCityDetailsCallback(jsonResponse) {
     addCitiesHistory();
 }
 
+// Creates dynamically generated elements to house 5 day forecast data
 function updateFiveDayForcast(jsonResponse) {
 
-    // ${jsonResponse.daily.temp}
-
     $("#5DayForecast").show();
-    //< -- - this returns 8 days of weather.
     let dayCounter = 0;
     $("#forecastCardContainer").empty();
     jsonResponse.daily.forEach(day => {
@@ -42,15 +41,7 @@ function updateFiveDayForcast(jsonResponse) {
     })
 };
 
-
-function getCityDetailsFromRecent() {
-    $("#recent-searches").attr("id", favorite.id);
-    $(`#${favorite.id}`).click("li", function() {
-        searchCityFunction();
-    });
-}
-
-
+// function to accept user input value into search and display city in details screen as well as current date
 function searchCityFunction() {
 
     $("#search-button").click(function() {
@@ -66,14 +57,14 @@ function searchCityFunction() {
     });
 };
 
-
+// creates an unordered list to display recent searched cities
 function displayRecentSearches() {
     let cityList = `<ul class="mb-4 mt-4">Recent Searches:</ul>`
     $("#recent-searches").append(cityList);
     addCitiesHistory();
 };
 
-
+// appends cities to list and makes them selectable to pull city data
 function addCitiesHistory() {
     $("#recent-searches").empty();
     let counter = 0;
@@ -96,13 +87,14 @@ function addCitiesHistory() {
     }
 }
 
-
+// adds the city elements to the details container
 function buildCityDetails() {
     createCityDetails($("#cityDetailContainer"));
     createFiveDayForecast($("#cityDetailContainer"));
 
 }
 
+//loads functions on page open
 function start() {
     buildCityDetails();
     searchCityFunction();
