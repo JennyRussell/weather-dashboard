@@ -1,4 +1,4 @@
-const baseURL = "http://api.openweathermap.org/data/2.5/"
+const baseURL = "https://api.openweathermap.org/data/2.5/"
 const API_KEY = "25713611fbc81c4d51549874823daa0a";
 
 function getWeatherByCity(userCity, callback) {
